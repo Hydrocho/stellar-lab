@@ -1,7 +1,1501 @@
 /* Compact observation desk: primary controls stay together. */
-header{height:56px;padding:0 3%;gap:12px}.brand{font-size:28px}.brand span{font-size:16px}.brand small{font-size:8px}header button{padding:8px 12px}main{max-width:1600px;padding:10px 3% 8px}.intro{margin-bottom:10px;gap:15px;align-items:center}.intro .eyebrow{display:none}h1{font-size:23px;margin:0 0 4px;letter-spacing:-.8px;word-break:keep-all}#subtitle{margin:0;font-size:11px}.mission{min-width:140px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:5px;font-size:10px}.mission strong{font-size:22px;margin:0}.mission small{font-size:12px}.mission .progress{grid-column:1/-1}.workspace{gap:12px;grid-template-columns:minmax(0,1fr) 360px;align-items:stretch;height:max(460px,calc(100dvh - 254px))}.sky-panel,.instrument{height:100%;min-height:0}.sky-panel{display:flex;flex-direction:column}.panel-head{min-height:40px;padding:9px 14px;flex-shrink:0}#sky{flex:1;height:auto;min-height:230px}.sky-controls{padding:7px 12px;flex-shrink:0}.sky-controls button{min-height:32px;padding:4px 13px}.sky-footer{display:none}.instrument{display:flex;flex-direction:column}.instrument #observation{padding:10px 14px;overflow-y:auto;min-height:0;flex:1;scrollbar-width:thin}.star-info{margin-bottom:5px;gap:12px}.orb{width:30px;height:30px}h3{font-size:15px}.spectrum-label{margin:4px 0;font-size:9px}#observation>svg{height:102px}.visible-spectrum{padding:8px 10px;margin:5px 0 8px}.spectrum-heading{margin-bottom:6px;font-size:10px}.spectrum-strip{height:28px}.spectrum-ticks{margin:3px 0 8px;font-size:8px}.spectrum-readings{grid-template-columns:repeat(3,1fr);gap:10px}.spectrum-readings>div{font-size:9px}.spectrum-readings small{display:none}.visible-spectrum p{font-size:10px;margin:7px 0 0}.spectrum-details{font-size:9px;color:var(--muted);margin-top:5px}.spectrum-details summary{cursor:pointer}.spectrum-note{font-size:9px}.formula{margin:5px 0;padding:7px;font-size:11px}#measure{display:grid;grid-template-columns:1fr 1.15fr;gap:6px;align-items:center}#measure label{grid-column:1/-1;margin:7px 0 0;font-size:11px}#measure input{min-width:0;padding:8px}#measure .primary{margin:0;padding:10px 5px;font-size:11px}.feedback{margin-top:6px;font-size:11px}.empty-orbit{height:95px}.hint{margin-top:15px;padding:12px}.collection .section-title{margin:9px 0 6px;align-items:center}.section-title .eyebrow,.section-title>p{display:none}.section-title h2{font-size:12px;margin:0}.collection-toggle{font-size:10px;padding:3px 7px;background:none;border:0;color:var(--muted)}#cards{grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}.type-card{padding:7px 10px}.type-card h3{font-size:18px;margin:0}.type-card .color-name{font-size:9px;margin-left:4px}.type-card .range,.type-card .example{display:none}.collection.expanded .range,.collection.expanded .example{display:block}.type-card .dots{margin-top:5px;gap:4px}.dots i{width:6px;height:6px}.collection-footer{margin:6px 0;gap:10px}.collection-footer>span{font-size:10px}.collection-footer button{padding:6px 12px;font-size:11px}.guide{padding:5px 0;font-size:10px}.guide p{font-size:12px}footer{padding:5px 0;border-top:0}footer>span,footer{font-size:9px}.mobile-views{display:none}#gameBar{padding:8px 12px;flex-shrink:0}#timer{font-size:21px}
-@media(max-width:900px) and (min-width:701px){.workspace{grid-template-columns:minmax(0,1fr) 320px}.type-card .color-name{display:none}.sky-controls span{font-size:8px}}
-@media(max-width:700px){header{height:auto;min-height:52px;flex-wrap:wrap;padding:7px 3%;gap:5px}header .brand{font-size:24px}header .brand span{font-size:14px}header nav{order:3;width:100%;gap:4px}header nav button{flex:1;padding:6px}.brand small{display:none}main{padding:8px 3%}.intro{gap:8px;align-items:center;margin-bottom:8px}h1{font-size:16px;margin:0;line-height:1.4}#subtitle{display:none}.mission{min-width:90px;font-size:9px}.mission strong{font-size:18px}.mission small{font-size:10px}.mobile-views{display:flex;gap:6px;margin-bottom:7px}.mobile-views button{flex:1;padding:7px;font-size:12px}.mobile-views button[aria-pressed=true]{background:#16312f;color:var(--mint);border-color:#356656}.workspace{display:block;height:max(410px,calc(100dvh - 286px))}.workspace .sky-panel{display:flex}.workspace .instrument{display:none}.workspace.show-analysis .sky-panel{display:none}.workspace.show-analysis .instrument{display:flex}.instrument #observation{padding:9px 12px}.empty-orbit{height:65px}#sky{height:auto;min-height:200px}.sky-controls span{font-size:9px}.sky-controls button{min-height:36px}.sky-bearing{left:9px;font-size:10px}.section-title{display:flex}.type-card{padding:6px 4px}.type-card h3{font-size:15px}.type-card .color-name{display:none}.dots{justify-content:center;flex-wrap:wrap;gap:3px!important}.dots span{width:100%;text-align:center;margin:0}.collection-footer{flex-direction:row;align-items:center}.collection-footer>span{display:none}.collection-footer button{margin-left:auto}.collection.expanded #cards{grid-template-columns:repeat(2,minmax(0,1fr))}.collection.expanded .type-card .color-name{display:inline}.collection.expanded .type-card{padding:10px}.collection.expanded .dots span{width:auto;margin-left:auto}.collection.expanded .dots{justify-content:start}.guide{font-size:10px}footer{gap:10px}.spectrum-readings small{display:inline;font-size:8px}}
-#subtitle,footer,.collection-footer{display:none}.collection .section-title{gap:10px}.section-title>div{margin-right:auto}.section-title #next{font-size:10px;padding:4px 9px}#observation>svg{height:88px}.visible-spectrum p{display:none}.visible-spectrum{margin-bottom:5px}.star-info{margin-bottom:2px}.instrument #observation{padding-top:8px;padding-bottom:8px}.guide{margin-top:7px}.workspace{height:max(460px,calc(100dvh - 218px))}@media(max-width:700px){.workspace{height:max(410px,calc(100dvh - 263px))}.section-title h2{font-size:10px}.collection-toggle{font-size:9px}.section-title #next{font-size:9px;padding:4px 6px}}
-@media(min-width:701px){.workspace{height:max(440px,calc(100dvh - 254px))}}
-main{padding-bottom:2px}@media(max-width:700px){.workspace{height:max(410px,calc(100dvh - 315px))}}
+header {
+    height: 56px;
+    padding: 0 3%;
+    gap: 12px
+}
+
+.brand {
+    font-size: 28px
+}
+
+.brand span {
+    font-size: 16px
+}
+
+.brand small {
+    font-size: 8px
+}
+
+header button {
+    padding: 8px 12px
+}
+
+main {
+    max-width: 1600px;
+    padding: 10px 3% 8px
+}
+
+.intro {
+    margin-bottom: 10px;
+    gap: 15px;
+    align-items: center
+}
+
+.intro .eyebrow {
+    display: none
+}
+
+h1 {
+    font-size: 23px;
+    margin: 0 0 4px;
+    letter-spacing: -.8px;
+    word-break: keep-all
+}
+
+#subtitle {
+    margin: 0;
+    font-size: 11px
+}
+
+.mission {
+    min-width: 140px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px
+}
+
+.mission strong {
+    font-size: 22px;
+    margin: 0
+}
+
+.mission small {
+    font-size: 12px
+}
+
+.mission .progress {
+    grid-column: 1/-1
+}
+
+.workspace {
+    gap: 12px;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    align-items: stretch;
+    height: max(460px, calc(100dvh - 254px))
+}
+
+.sky-panel,
+.instrument {
+    height: 100%;
+    min-height: 0
+}
+
+.sky-panel {
+    display: flex;
+    flex-direction: column
+}
+
+.panel-head {
+    min-height: 40px;
+    padding: 9px 14px;
+    flex-shrink: 0
+}
+
+#sky {
+    flex: 1;
+    height: auto;
+    min-height: 230px
+}
+
+.sky-controls {
+    padding: 7px 12px;
+    flex-shrink: 0
+}
+
+.sky-controls button {
+    min-height: 32px;
+    padding: 4px 13px
+}
+
+.sky-footer {
+    display: none
+}
+
+.instrument {
+    display: flex;
+    flex-direction: column
+}
+
+.instrument #observation {
+    padding: 10px 14px;
+    overflow-y: auto;
+    min-height: 0;
+    flex: 1;
+    scrollbar-width: thin
+}
+
+.star-info {
+    margin-bottom: 5px;
+    gap: 12px
+}
+
+.orb {
+    width: 30px;
+    height: 30px
+}
+
+h3 {
+    font-size: 15px
+}
+
+.spectrum-label {
+    margin: 4px 0;
+    font-size: 9px
+}
+
+#observation>svg {
+    height: 102px
+}
+
+.visible-spectrum {
+    padding: 8px 10px;
+    margin: 5px 0 8px
+}
+
+.spectrum-heading {
+    margin-bottom: 6px;
+    font-size: 10px
+}
+
+.spectrum-strip {
+    height: 28px
+}
+
+.spectrum-ticks {
+    margin: 3px 0 8px;
+    font-size: 8px
+}
+
+.spectrum-readings {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px
+}
+
+.spectrum-readings>div {
+    font-size: 9px
+}
+
+.spectrum-readings small {
+    display: none
+}
+
+.visible-spectrum p {
+    font-size: 10px;
+    margin: 7px 0 0
+}
+
+.spectrum-details {
+    font-size: 9px;
+    color: var(--muted);
+    margin-top: 5px
+}
+
+.spectrum-details summary {
+    cursor: pointer
+}
+
+.spectrum-note {
+    font-size: 9px
+}
+
+.formula {
+    margin: 5px 0;
+    padding: 7px;
+    font-size: 11px
+}
+
+#measure {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 6px;
+    align-items: center
+}
+
+#measure label {
+    grid-column: 1/-1;
+    margin: 7px 0 0;
+    font-size: 11px
+}
+
+#measure input {
+    min-width: 0;
+    padding: 8px
+}
+
+#measure .primary {
+    margin: 0;
+    padding: 10px 5px;
+    font-size: 11px
+}
+
+.feedback {
+    margin-top: 6px;
+    font-size: 11px
+}
+
+.empty-orbit {
+    height: 95px
+}
+
+.hint {
+    margin-top: 15px;
+    padding: 12px
+}
+
+.collection .section-title {
+    margin: 9px 0 6px;
+    align-items: center
+}
+
+.section-title .eyebrow,
+.section-title>p {
+    display: none
+}
+
+.section-title h2 {
+    font-size: 12px;
+    margin: 0
+}
+
+.collection-toggle {
+    font-size: 10px;
+    padding: 3px 7px;
+    background: none;
+    border: 0;
+    color: var(--muted)
+}
+
+#cards {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 7px
+}
+
+.type-card {
+    padding: 7px 10px
+}
+
+.type-card h3 {
+    font-size: 18px;
+    margin: 0
+}
+
+.type-card .color-name {
+    font-size: 9px;
+    margin-left: 4px
+}
+
+.type-card .range,
+.type-card .example {
+    display: none
+}
+
+.collection.expanded .range,
+.collection.expanded .example {
+    display: block
+}
+
+.type-card .dots {
+    margin-top: 5px;
+    gap: 4px
+}
+
+.dots i {
+    width: 6px;
+    height: 6px
+}
+
+.collection-footer {
+    margin: 6px 0;
+    gap: 10px
+}
+
+.collection-footer>span {
+    font-size: 10px
+}
+
+.collection-footer button {
+    padding: 6px 12px;
+    font-size: 11px
+}
+
+.guide {
+    padding: 5px 0;
+    font-size: 10px
+}
+
+.guide p {
+    font-size: 12px
+}
+
+footer {
+    padding: 5px 0;
+    border-top: 0
+}
+
+footer>span,
+footer {
+    font-size: 9px
+}
+
+.mobile-views {
+    display: none
+}
+
+#gameBar {
+    padding: 8px 12px;
+    flex-shrink: 0
+}
+
+#timer {
+    font-size: 21px
+}
+
+@media(max-width:900px) and (min-width:701px) {
+    .workspace {
+        grid-template-columns: minmax(0, 1fr) 320px
+    }
+
+    .type-card .color-name {
+        display: none
+    }
+
+    .sky-controls span {
+        font-size: 8px
+    }
+}
+
+@media(max-width:700px) {
+    header {
+        height: auto;
+        min-height: 52px;
+        flex-wrap: wrap;
+        padding: 7px 3%;
+        gap: 5px
+    }
+
+    header .brand {
+        font-size: 24px
+    }
+
+    header .brand span {
+        font-size: 14px
+    }
+
+    header nav {
+        order: 3;
+        width: 100%;
+        gap: 4px
+    }
+
+    header nav button {
+        flex: 1;
+        padding: 6px
+    }
+
+    .brand small {
+        display: none
+    }
+
+    main {
+        padding: 8px 3%
+    }
+
+    .intro {
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 8px
+    }
+
+    h1 {
+        font-size: 16px;
+        margin: 0;
+        line-height: 1.4
+    }
+
+    #subtitle {
+        display: none
+    }
+
+    .mission {
+        min-width: 90px;
+        font-size: 9px
+    }
+
+    .mission strong {
+        font-size: 18px
+    }
+
+    .mission small {
+        font-size: 10px
+    }
+
+    .mobile-views {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 7px
+    }
+
+    .mobile-views button {
+        flex: 1;
+        padding: 7px;
+        font-size: 12px
+    }
+
+    .mobile-views button[aria-pressed=true] {
+        background: #16312f;
+        color: var(--mint);
+        border-color: #356656
+    }
+
+    .workspace {
+        display: block;
+        height: max(410px, calc(100dvh - 286px))
+    }
+
+    .workspace .sky-panel {
+        display: flex
+    }
+
+    .workspace .instrument {
+        display: none
+    }
+
+    .workspace.show-analysis .sky-panel {
+        display: none
+    }
+
+    .workspace.show-analysis .instrument {
+        display: flex
+    }
+
+    .instrument #observation {
+        padding: 9px 12px
+    }
+
+    .empty-orbit {
+        height: 65px
+    }
+
+    #sky {
+        height: auto;
+        min-height: 200px
+    }
+
+    .sky-controls span {
+        font-size: 9px
+    }
+
+    .sky-controls button {
+        min-height: 36px
+    }
+
+    .sky-bearing {
+        left: 9px;
+        font-size: 10px
+    }
+
+    .section-title {
+        display: flex
+    }
+
+    .type-card {
+        padding: 6px 4px
+    }
+
+    .type-card h3 {
+        font-size: 15px
+    }
+
+    .type-card .color-name {
+        display: none
+    }
+
+    .dots {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 3px !important
+    }
+
+    .dots span {
+        width: 100%;
+        text-align: center;
+        margin: 0
+    }
+
+    .collection-footer {
+        flex-direction: row;
+        align-items: center
+    }
+
+    .collection-footer>span {
+        display: none
+    }
+
+    .collection-footer button {
+        margin-left: auto
+    }
+
+    .collection.expanded #cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    .collection.expanded .type-card .color-name {
+        display: inline
+    }
+
+    .collection.expanded .type-card {
+        padding: 10px
+    }
+
+    .collection.expanded .dots span {
+        width: auto;
+        margin-left: auto
+    }
+
+    .collection.expanded .dots {
+        justify-content: start
+    }
+
+    .guide {
+        font-size: 10px
+    }
+
+    footer {
+        gap: 10px
+    }
+
+    .spectrum-readings small {
+        display: inline;
+        font-size: 8px
+    }
+}
+
+#subtitle,
+footer,
+.collection-footer {
+    display: none
+}
+
+.collection .section-title {
+    gap: 10px
+}
+
+.section-title>div {
+    margin-right: auto
+}
+
+.section-title #next {
+    font-size: 10px;
+    padding: 4px 9px
+}
+
+#observation>svg {
+    height: 88px
+}
+
+.visible-spectrum p {
+    display: none
+}
+
+.visible-spectrum {
+    margin-bottom: 5px
+}
+
+.star-info {
+    margin-bottom: 2px
+}
+
+.instrument #observation {
+    padding-top: 8px;
+    padding-bottom: 8px
+}
+
+.guide {
+    margin-top: 7px
+}
+
+.workspace {
+    height: max(460px, calc(100dvh - 218px))
+}
+
+@media(max-width:700px) {
+    .workspace {
+        height: max(410px, calc(100dvh - 263px))
+    }
+
+    .section-title h2 {
+        font-size: 10px
+    }
+
+    .collection-toggle {
+        font-size: 9px
+    }
+
+    .section-title #next {
+        font-size: 9px;
+        padding: 4px 6px
+    }
+}
+
+@media(min-width:701px) {
+    .workspace {
+        height: max(440px, calc(100dvh - 254px))
+    }
+}
+
+main {
+    padding-bottom: 2px
+}
+
+@media(max-width:700px) {
+    .workspace {
+        height: max(410px, calc(100dvh - 315px))
+    }
+}
+
+.classification {
+    margin-top: 8px;
+    border-top: 1px solid var(--line);
+    padding-top: 8px
+}
+
+.classify-heading {
+    display: flex;
+    justify-content: space-between;
+    color: var(--mint);
+    font-size: 11px
+}
+
+.classification p {
+    font-size: 11px;
+    line-height: 1.6;
+    margin: 6px 0
+}
+
+.type-choices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px
+}
+
+.type-choices button {
+    padding: 7px;
+    min-height: 42px
+}
+
+.type-choices small {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 3px
+}
+
+.classification .feedback {
+    font-size: 10px;
+    line-height: 1.5
+}
+
+.specimen-card {
+    border: 1px solid var(--color);
+    border-radius: 10px;
+    padding: 10px;
+    background: linear-gradient(140deg, #1c2c3e, #0b1524)
+}
+
+.specimen-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    font-size: 8px;
+    letter-spacing: .5px;
+    color: var(--color);
+    margin-bottom: 12px
+}
+
+.specimen-card>svg {
+    height: 100px
+}
+
+.specimen-card .visible-spectrum {
+    margin-bottom: 0
+}
+
+.specimen-card p {
+    line-height: 1.7;
+    margin: 8px 0
+}
+
+.specimen-card .sub strong {
+    color: #eef4ff
+}
+
+.card-earned .specimen-card {
+    animation: card-arrival .4s ease-out
+}
+
+@keyframes card-arrival {
+    from {
+        opacity: .25;
+        transform: translateY(12px) scale(.97)
+    }
+
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    .card-earned .specimen-card {
+        animation: none
+    }
+}
+
+#atlas {
+    width: min(760px, 94vw);
+    max-height: 88dvh
+}
+
+.atlas-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px
+}
+
+.atlas-toolbar button {
+    font-size: 11px;
+    padding: 7px 10px
+}
+
+#atlasDetail:not(:empty) {
+    max-width: 390px;
+    margin: 0 auto 20px
+}
+
+.atlas-family {
+    margin: 14px 0
+}
+
+.atlas-family h3 {
+    font-size: 16px;
+    color: var(--color)
+}
+
+.atlas-family h3 small {
+    font-weight: 400;
+    font-size: 11px;
+    color: var(--muted)
+}
+
+.atlas-family>div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px
+}
+
+.atlas-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 13px 5px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #0b1524
+}
+
+.atlas-card>span {
+    font-size: 25px;
+    color: var(--color)
+}
+
+.atlas-card strong {
+    font-size: 12px
+}
+
+.atlas-card small {
+    font-size: 10px;
+    color: var(--muted)
+}
+
+.atlas-card.missing {
+    border-style: dashed;
+    opacity: .45
+}
+
+.reset-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px
+}
+
+#resetAtlasDialog p {
+    font-size: 13px;
+    line-height: 1.8
+}
+
+#confirmAtlasReset {
+    background: #743a46
+}
+
+#atlasBtn {
+    color: var(--mint)
+}
+
+@media(max-width:700px) {
+    .section-title {
+        flex-wrap: wrap;
+        gap: 5px !important
+    }
+
+    .section-title>div {
+        width: 100%
+    }
+
+    .workspace {
+        height: max(410px, calc(100dvh - 340px))
+    }
+
+    .atlas-toolbar {
+        align-items: flex-start
+    }
+
+    #atlas {
+        padding: 16px
+    }
+}
+
+#sky .star {
+    pointer-events: none;
+    cursor: inherit
+}
+
+#sky .star.acquired {
+    z-index: 4
+}
+
+#sky .star.acquired i {
+    animation: star-acquire-pop .55s cubic-bezier(.2, .8, .25, 1.25) forwards
+}
+
+.star-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0
+}
+
+#sky .star.acquired .star-ring {
+    animation: star-ring-burst .55s cubic-bezier(.1, .7, .3, 1) forwards
+}
+
+.star-flare {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    opacity: 0;
+    pointer-events: none
+}
+
+.star-flare:before,
+.star-flare:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent, #fff 50%, transparent);
+    height: 2px;
+    top: calc(50% - 1px);
+    filter: drop-shadow(0 0 5px var(--color))
+}
+
+.star-flare:after {
+    transform: rotate(90deg)
+}
+
+#sky .star.acquired .star-flare {
+    animation: star-flare-burst .5s ease-out forwards
+}
+
+@keyframes star-acquire-pop {
+    0% {
+        transform: scale(1);
+        filter: brightness(1) drop-shadow(0 0 4px var(--color))
+    }
+
+    28% {
+        transform: scale(2.2);
+        filter: brightness(2.6) drop-shadow(0 0 14px #fff) drop-shadow(0 0 26px var(--color))
+    }
+
+    58% {
+        transform: scale(.88);
+        filter: brightness(1.3) drop-shadow(0 0 10px var(--color))
+    }
+
+    80% {
+        transform: scale(1.12);
+        filter: brightness(1.1) drop-shadow(0 0 8px var(--color))
+    }
+
+    100% {
+        transform: scale(1);
+        filter: brightness(1) drop-shadow(0 0 6px var(--color))
+    }
+}
+
+@keyframes star-ring-burst {
+    0% {
+        transform: scale(.3);
+        opacity: 1;
+        border: 2px solid #fff;
+        box-shadow: 0 0 12px #fff, inset 0 0 8px var(--color)
+    }
+
+    40% {
+        opacity: .9;
+        border: 2px solid var(--color);
+        box-shadow: 0 0 16px var(--color)
+    }
+
+    100% {
+        transform: scale(2.8);
+        opacity: 0;
+        border: 1px solid var(--color)
+    }
+}
+
+@keyframes star-flare-burst {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0
+    }
+
+    35% {
+        transform: scale(1.7) rotate(45deg);
+        opacity: 1
+    }
+
+    100% {
+        transform: scale(2.3) rotate(90deg);
+        opacity: 0
+    }
+}
+
+.star.selected {
+    outline: none
+}
+
+.star.selected:before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    border: 1px dashed var(--mint);
+    opacity: .75;
+    animation: star-selected-spin 10s linear infinite;
+    pointer-events: none
+}
+
+@keyframes star-selected-spin {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+
+    #sky .star.acquired i,
+    #sky .star.acquired .star-ring,
+    #sky .star.acquired .star-flare,
+    .star.selected:before {
+        animation: none !important;
+        transform: none !important
+    }
+}
+
+#sky .sky-reticle {
+    width: 36px;
+    height: 36px;
+    z-index: 3;
+    color: #d9fff2;
+    font-size: 0;
+    pointer-events: none;
+    --aim-progress: 0deg
+}
+
+.aim-cross {
+    position: absolute;
+    inset: 0;
+    filter: drop-shadow(0 1px 3px #000)
+}
+
+.aim-cross:before,
+.aim-cross:after {
+    content: '';
+    position: absolute;
+    background: #d9fff2;
+    border-radius: 2px;
+    box-shadow: 0 0 5px #67e3bbaa
+}
+
+.aim-cross:before {
+    height: 0.75px;
+    width: 11px;
+    left: 12.5px;
+    top: 17.625px
+}
+
+.aim-cross:after {
+    width: 0.75px;
+    height: 11px;
+    left: 17.625px;
+    top: 12.5px
+}
+
+.aim-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(#84e2c3 var(--aim-progress), #bad8f233 0);
+    mask: radial-gradient(circle, transparent 64%, #000 66%);
+    -webkit-mask: radial-gradient(circle, transparent 64%, #000 66%)
+}
+
+.aim-label {
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 10px;
+    color: #d9fff2;
+    background: #06111dd9;
+    border-radius: 5px;
+    padding: 5px 8px
+}
+
+.aiming .aim-cross {
+    animation: aim-breathe .8s ease-in-out infinite alternate
+}
+
+.locked .aim-cross:before,
+.locked .aim-cross:after {
+    background: #84e2c3
+}
+
+.locked .aim-ring {
+    box-shadow: 0 0 15px #84e2c380
+}
+
+@keyframes aim-breathe {
+    from {
+        opacity: .55
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    .aiming .aim-cross {
+        animation: none
+    }
+}
+
+.probe-experiment {
+    margin: 5px 0 9px
+}
+
+#probeGraph {
+    width: 100%;
+    height: 125px;
+    touch-action: none;
+    cursor: ew-resize;
+    border-radius: 7px;
+    background: #0a1423
+}
+
+.peak-found #probeDot {
+    fill: #84e2c3;
+    filter: drop-shadow(0 0 4px #84e2c3)
+}
+
+.probe-readings {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 10px;
+    margin: 5px 0;
+    color: var(--muted)
+}
+
+.probe-readings b {
+    color: #ffe3a5;
+    white-space: nowrap
+}
+
+.probe-experiment label {
+    font-size: 11px;
+    margin: 8px 0 2px
+}
+
+#probeSlider {
+    width: 100%;
+    padding: 0;
+    height: 28px;
+    accent-color: #84e2c3;
+    cursor: ew-resize;
+    background: transparent;
+    border: 0
+}
+
+.probe-tuning {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: space-between
+}
+
+.probe-tuning button {
+    padding: 4px 8px;
+    font-size: 10px;
+    min-height: 30px
+}
+
+.probe-tuning span {
+    font-size: 8px;
+    color: var(--muted)
+}
+
+.probe-hint {
+    font-size: 10px;
+    line-height: 1.5;
+    color: var(--mint);
+    margin: 5px 0;
+    min-height: 30px
+}
+
+#registerProbe {
+    margin-top: 0;
+    padding: 8px;
+    font-size: 11px
+}
+
+.probe-experiment+.visible-spectrum {
+    margin-top: 6px
+}
+
+@media(max-width:700px) {
+    #probeGraph {
+        height: 125px
+    }
+
+    .probe-tuning button {
+        min-height: 36px
+    }
+}
+
+#probeGraph {
+    height: auto;
+    aspect-ratio: 310/180
+}
+
+.specimen-card>svg.integrated-spectrum {
+    height: auto
+}
+
+.probe-region {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--muted);
+    min-height: 18px
+}
+
+#probeColor {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #ffffff55
+}
+
+#probeColor[hidden] {
+    display: none
+}
+
+/* Keep the acquisition action in view; let only the plot absorb height changes. */
+.instrument #observation:has(.probe-experiment) {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    gap: 6px;
+    padding: 10px 12px;
+    min-height: 0
+}
+
+#observation:has(.probe-experiment)>.star-info {
+    flex: 0 0 auto;
+    margin: 0;
+    min-height: 36px
+}
+
+#observation .probe-experiment {
+    display: grid;
+    grid-template-rows: 16px minmax(90px, 1fr) 22px 20px 40px minmax(28px, auto) 40px;
+    gap: 4px;
+    flex: 1;
+    min-height: 0;
+    margin: 0
+}
+
+.probe-experiment .spectrum-label {
+    margin: 0;
+    align-items: center
+}
+
+.probe-experiment #probeGraph {
+    height: 100%;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    align-self: stretch
+}
+
+.probe-experiment .probe-readings {
+    margin: 0;
+    align-items: center;
+    font-size: 11px
+}
+
+.probe-experiment .probe-region {
+    font-size: 10px;
+    min-height: 0
+}
+
+.probe-controls {
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr) 54px;
+    align-items: center;
+    gap: 8px
+}
+
+.probe-controls button {
+    padding: 4px;
+    font-size: 11px;
+    min-height: 36px
+}
+
+.probe-controls #probeSlider {
+    margin: 0;
+    height: 36px;
+    min-width: 0
+}
+
+.probe-experiment .probe-hint {
+    margin: 0;
+    min-height: 0;
+    align-self: center;
+    font-size: 11px;
+    line-height: 1.4
+}
+
+.probe-experiment #registerProbe {
+    margin: 0;
+    width: 100%;
+    height: 40px;
+    font-size: 12px;
+    border-radius: 7px;
+    align-self: end
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip-path: inset(50%);
+    white-space: nowrap !important;
+    border: 0 !important
+}
+
+@media(max-width:700px) {
+    .instrument #observation:has(.probe-experiment) {
+        padding: 8px 10px
+    }
+
+    .probe-experiment .probe-readings {
+        font-size: 10px
+    }
+
+    .probe-experiment .probe-hint {
+        font-size: 10px
+    }
+}
+
+/* 3D Celestial Stellar Model (Spherical Axial Rotation & Cosmic Luminosity Breathing - Pure Color Fidelity) */
+.orb {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--color);
+    box-shadow: 0 0 14px var(--color), 0 0 28px var(--color);
+    animation: orb-cosmic-breathe 4.5s ease-in-out infinite;
+    isolation: isolate
+}
+
+.orb::before {
+    content: '';
+    position: absolute;
+    top: -25%;
+    left: -100%;
+    width: 300%;
+    height: 150%;
+    background: radial-gradient(ellipse 20% 40% at 20% 35%, rgba(255, 255, 255, 0.22) 0%, transparent 60%), radial-gradient(ellipse 25% 45% at 55% 65%, rgba(255, 255, 255, 0.16) 0%, transparent 60%), radial-gradient(ellipse 20% 40% at 86.666% 35%, rgba(255, 255, 255, 0.22) 0%, transparent 60%), repeating-linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 8%, transparent 16%, rgba(0, 0, 0, 0.32) 24%, transparent 33.333%), linear-gradient(90deg, var(--color), var(--color));
+    transform: rotate(-18deg);
+    animation: orb-surface-spin 9s linear infinite;
+    pointer-events: none
+}
+
+.orb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.15) 12%, transparent 35%, rgba(4, 10, 20, 0.5) 75%, rgba(2, 6, 14, 0.88) 100%);
+    box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.82), inset 1.5px 1.5px 4px rgba(255, 255, 255, 0.3);
+    pointer-events: none
+}
+
+@keyframes orb-surface-spin {
+    0% {
+        transform: rotate(-18deg) translateX(0)
+    }
+
+    100% {
+        transform: rotate(-18deg) translateX(-33.333%)
+    }
+}
+
+@keyframes orb-cosmic-breathe {
+    0% {
+        filter: saturate(1) brightness(0.92) drop-shadow(0 0 6px var(--color));
+        box-shadow: 0 0 10px var(--color), 0 0 22px var(--color);
+        transform: scale(0.97)
+    }
+
+    50% {
+        filter: saturate(1.15) brightness(1.08) drop-shadow(0 0 14px var(--color));
+        box-shadow: 0 0 20px var(--color), 0 0 38px var(--color), 0 0 55px var(--color);
+        transform: scale(1.03)
+    }
+
+    100% {
+        filter: saturate(1) brightness(0.92) drop-shadow(0 0 6px var(--color));
+        box-shadow: 0 0 10px var(--color), 0 0 22px var(--color);
+        transform: scale(0.97)
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    .orb {
+        animation: none !important;
+        transform: none !important
+    }
+
+    .orb::before {
+        animation: none !important;
+        transform: rotate(-18deg) !important
+    }
+}
+
+/* Color-filled Spectral Type Cards with Unified Dark Ink Typography */
+.type-card {
+    background: var(--color);
+    color: #081324;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), 0 0 10px var(--color);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.type-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 0 14px var(--color);
+}
+
+.type-card:before {
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.type-card h3 {
+    color: #081324;
+    font-weight: 800;
+}
+
+.type-card .color-name {
+    color: #081324;
+    opacity: 0.82;
+    font-weight: 600;
+}
+
+.type-card .range {
+    color: #081324;
+    font-weight: 700;
+}
+
+.type-card .example {
+    color: #081324;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.type-card .dots span {
+    color: #081324;
+    font-weight: 700;
+}
+
+.type-card .dots i {
+    background: rgba(8, 19, 36, 0.22);
+    border: 1px solid rgba(8, 19, 36, 0.35);
+    box-shadow: none;
+}
+
+.type-card .dots i.filled {
+    background: #081324;
+    border-color: #081324;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}/* Temperature is a permanent reference, even when examples are collapsed. */
+.collection .type-card .range{display:block;font-size:12px;line-height:1.35;margin-top:4px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+@media(max-width:700px){.collection:not(.expanded) #cards{grid-template-columns:repeat(4,minmax(0,1fr))}.collection .type-card .range{font-size:11px}.collection:not(.expanded) .type-card{padding:7px}}
+@media(max-width:400px){.collection:not(.expanded) #cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* One desktop header row: identity, learning title/progress, navigation and history. */
+header{height:auto;min-height:64px;padding:10px 2%;gap:18px}
+header .brand{flex:none;gap:9px;white-space:nowrap}
+header .brand .author-credit{display:inline;font-size:10px;letter-spacing:0;color:var(--muted);font-weight:400;margin:0 0 0 5px}
+header .intro{flex:1;min-width:0;margin:0;gap:16px}
+header .intro h1{font-size:clamp(16px,1.4vw,23px);margin:0;white-space:nowrap}
+header #subtitle{display:none}
+header .mission{min-width:108px;font-size:9px;gap:3px}
+header .mission strong{font-size:20px}
+header nav,header #recordsBtn{flex:none;white-space:nowrap}
+@media(max-width:1200px){header{flex-wrap:wrap;gap:8px 14px}header .intro{order:4;flex-basis:100%}header nav{margin-left:auto}header #recordsBtn{margin-left:0}}
+@media(max-width:700px){header{padding:9px 3%}header nav{order:3;width:100%;margin:0}header .intro{order:4;gap:8px}header .intro h1{font-size:16px;white-space:normal}header .brand .author-credit{font-size:9px}header #recordsBtn{margin-left:auto}header .mission{min-width:85px}}
+/* Author credit: readable white lettering with an occasional left-to-right light. */
+header .brand .author-credit{position:relative;display:inline-block;color:var(--muted);font-size:10px;font-weight:400;letter-spacing:0;text-shadow:none}
+header .brand .author-credit::after{content:attr(data-highlight);position:absolute;inset:0;pointer-events:none;color:transparent;font-weight:700;background:linear-gradient(100deg,transparent 0%,transparent 38%,#d9faff 46%,#fff 50%,#d9faff 54%,transparent 62%,transparent 100%);background-size:250% 100%;background-position:160% 0;background-clip:text;-webkit-background-clip:text;filter:drop-shadow(0 0 4px #d8fbff);animation:author-light 7s linear infinite}
+@keyframes author-light{0%,72%{opacity:0;background-position:160% 0}74%{opacity:1;background-position:160% 0}95%{opacity:1;background-position:-60% 0}97%,100%{opacity:0;background-position:-60% 0}}
+@media(max-width:700px){header .brand .author-credit{font-size:9px}}
+@media(prefers-reduced-motion:reduce){header .brand .author-credit::after{animation:none;display:none}}

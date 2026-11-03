@@ -1,0 +1,58 @@
+#gameBar #combo{display:block;color:#8ae5cf;font-size:11px;white-space:nowrap}#target small{font-size:11px}#target b{font-size:14px}#huntReward{position:absolute;z-index:8;top:65%;left:5%;width:90%;text-align:center;color:#fff2b6;font-size:clamp(15px,2vw,23px);font-weight:800;pointer-events:none;opacity:0;text-shadow:0 0 15px #ffd16b}.reward-pop{animation:reward-rise 1.2s ease-out}.goal-signal{animation:goal-flash .65s ease-out}.star.cooling{opacity:.28}.final-seconds{box-shadow:inset 0 0 20px #ff74594d}#gameBar.final-seconds #timer{color:#ff947c;animation:final-beat .8s infinite alternate}#stop{width:100%;margin-top:14px}@keyframes reward-rise{0%{opacity:0;transform:translateY(8px) scale(.85)}20%,65%{opacity:1}100%{opacity:0;transform:translateY(-22px)}}@keyframes goal-flash{0%{filter:brightness(2);transform:translateX(4px)}100%{filter:brightness(1);transform:none}}@keyframes final-beat{to{opacity:.6}}@media(prefers-reduced-motion:reduce){.reward-pop{animation:none;opacity:1}.goal-signal,#gameBar.final-seconds #timer{animation:none}}
+/* Mission telemetry lives in the instrument; the sky retains only capture effects. */
+.instrument #gameBar{flex:none;display:flex;flex-direction:column;gap:12px;padding:18px 20px;background:linear-gradient(145deg,#172b35,#101a2b);border-bottom:1px solid var(--line)}
+.instrument #gameBar[hidden]{display:none}
+.hunt-stats{display:flex;justify-content:space-between;gap:16px;align-items:end}
+.hunt-stats small{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}
+.hunt-stats #score{margin:0;font-size:23px}.hunt-stats #timer{font-size:30px;font-variant-numeric:tabular-nums}
+#missionStatus{font-size:12px;color:#d8e8f4;line-height:1.5}
+#target .hunt-star{display:flex;align-items:center;gap:20px;min-height:84px;padding:10px 4px}
+#target .orb{width:62px;height:62px}#target h3{font-size:20px;margin:0 0 5px}.hunt-or{display:block;font-size:11px;color:var(--muted);text-align:center}
+.hunt-instructions{font-size:11px;line-height:1.8;color:var(--muted)}
+.hunt-playing .instrument #observation{padding:12px 20px;flex:1;min-height:0}.hunt-playing #gameFeedback{min-height:22px}.hunt-playing #stop{margin-top:10px;padding:8px}
+@media(max-width:700px){
+ .workspace.hunt-playing{height:auto;min-height:0;grid-template-columns:1fr;gap:8px}
+ .workspace.hunt-playing .sky-panel,.workspace.hunt-playing.show-analysis .sky-panel{display:flex;min-height:240px;height:clamp(240px,43svh,400px)}
+ .workspace.hunt-playing .instrument,.workspace.hunt-playing.show-analysis .instrument{display:flex;min-height:0;height:auto}
+ .hunt-playing .instrument .panel-head{min-height:32px;padding:7px 12px}
+ .instrument #gameBar{padding:10px 14px;gap:5px;display:grid;grid-template-columns:1fr 1fr;align-items:center;column-gap:15px}
+ .hunt-stats{grid-column:2;grid-row:1/3;gap:8px}.hunt-stats #timer{font-size:23px}.hunt-stats #score{font-size:18px}
+ #missionStatus{grid-column:1;grid-row:1;font-size:11px}#target{grid-column:1;grid-row:2/4}#gameBar #combo{grid-column:2;grid-row:3;white-space:normal}
+ #target .hunt-star{gap:10px;min-height:45px;padding:4px 0}#target .orb{width:32px;height:32px}#target h3{font-size:14px}#target .sub{font-size:10px}.hunt-or{font-size:9px}
+ .hunt-playing .instrument #observation{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:8px 14px}.hunt-playing .hunt-instructions{display:none}.hunt-playing #gameFeedback{margin:0;align-self:center}.hunt-playing #stop{margin:0;width:auto}
+}
+@media(max-width:700px){.workspace.hunt-playing{display:grid}.hunt-playing #sky{min-height:200px}}
+#huntCountdown{position:absolute;z-index:9;left:50%;top:27%;transform:translate(-50%,-50%);font-size:clamp(48px,8vw,86px);font-weight:900;font-style:italic;color:#fff1c3;text-shadow:0 0 18px #ffc878,0 0 48px #ff774c;pointer-events:none;line-height:1}#huntCountdown[hidden]{display:none}.count-beat{animation:count-beat .85s ease-out}@keyframes count-beat{from{opacity:.4;transform:translate(-50%,-50%) scale(1.35)}25%{opacity:1}to{opacity:.8;transform:translate(-50%,-50%) scale(1)}}
+.hunt-result{text-align:center}.result-grade{font-family:Impact,'Arial Black',sans-serif;font-size:clamp(80px,9vw,130px);font-weight:900;font-style:italic;line-height:1.15;color:#aeffe6;letter-spacing:-5px;text-shadow:0 3px 0 #357b82,0 7px 0 #173d56,0 0 25px #73e4cf66;transform:rotate(-7deg);margin:6px 0 12px}.result-score{font-size:30px;font-variant-numeric:tabular-nums;color:#fff0bf;margin:12px 0}.result-score span{font-size:14px}.rank-step{animation:rank-step .25s ease-out}.rank-final{animation:rank-arrive .55s ease-out,rank-starlight 2.4s .55s ease-in-out infinite}.result-types{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:12px 0;font-size:12px}.result-types span{color:var(--color);border:1px solid currentColor;border-radius:16px;padding:4px 10px}.result-history{text-align:left;font-size:12px;border:1px solid var(--line);border-radius:8px;padding:10px}.result-history summary{cursor:pointer;color:var(--mint)}.result-history ol{padding:0;list-style:none;max-height:150px;overflow:auto;margin-bottom:0}.result-history li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:5px;padding:7px 0;border-bottom:1px solid var(--line)}.result-history small{width:100%;color:var(--mint)}
+@keyframes rank-step{from{transform:rotate(-7deg) scale(1.2)}to{transform:rotate(-7deg) scale(1)}}@keyframes rank-arrive{from{transform:rotate(-12deg) scale(1.45);filter:brightness(2)}to{transform:rotate(-7deg) scale(1);filter:brightness(1)}}@keyframes rank-starlight{0%,100%{filter:brightness(1);text-shadow:0 3px 0 #357b82,0 7px 0 #173d56,0 0 18px #73e4cf66}50%{filter:brightness(1.35);text-shadow:0 3px 0 #357b82,0 7px 0 #173d56,0 0 32px #73e4cf,0 0 58px #73e4cf99}}
+@media(prefers-reduced-motion:reduce){.count-beat,.rank-step,.rank-final{animation:none}}
+/* Reserve the retry action outside the optional scrolling result details. */
+.instrument #observation:has(.hunt-result){display:flex;overflow:hidden;padding:12px 16px}
+.hunt-result{display:flex;flex-direction:column;gap:8px;width:100%;min-height:0;flex:1}
+.result-content{flex:1;min-height:0;overflow-y:auto;scrollbar-width:thin;padding:5px 3px}
+.result-heading{display:grid;grid-template-columns:90px 1fr;align-items:center;column-gap:12px;max-width:340px;margin:0 auto 8px;min-height:100px}
+.result-heading .result-grade{grid-column:1;grid-row:1/3;font-size:72px;line-height:1;margin:0;letter-spacing:-3px}
+.result-heading h3{grid-column:2;align-self:end;font-size:15px;margin:0 0 5px}
+.result-heading .result-score{grid-column:2;align-self:start;font-size:28px;margin:0}
+.hunt-result .result-stats{margin:4px 0;line-height:1.6}
+.hunt-result .result-types{margin:8px 0;gap:5px;font-size:11px}
+.hunt-result .result-types span{padding:3px 8px}
+.hunt-result .result-history{padding:8px 10px;font-size:11px}
+.hunt-result .result-saved{margin:8px 0 0;font-size:10px}
+.hunt-result #again{flex:none;margin:0;min-height:42px;padding:10px 14px}
+@media(max-width:700px){.instrument #observation:has(.hunt-result){padding:10px 12px}.result-heading{min-height:85px}.result-heading .result-grade{font-size:64px}}
+#target .hunt-star>div:last-child{min-width:0;flex:1}
+#target .hunt-star h3{font-size:16px;margin-bottom:7px}
+.target-temperature{border-left:3px solid var(--color);padding:4px 0 4px 10px;color:var(--color)}
+.target-temperature small{display:block!important;color:var(--muted);font-size:10px!important;margin-bottom:3px}
+.target-temperature strong{display:block;font-size:clamp(18px,1.6vw,25px);font-weight:800;line-height:1.25;font-variant-numeric:tabular-nums;letter-spacing:-.5px;text-shadow:0 0 16px color-mix(in srgb,var(--color) 30%,transparent)}
+@media(max-width:700px){#target .hunt-star h3{font-size:12px;margin-bottom:3px}.target-temperature{padding-left:6px}.target-temperature strong{font-size:15px}.target-temperature small{font-size:9px!important}#target .hunt-star{gap:8px}}
+/* A game-only supernova flourish, followed by relocation behind the observer. */
+#sky .star.supernova{z-index:7;opacity:1;pointer-events:none}
+#sky .star.supernova i{animation:supernova-core .75s ease-out forwards}
+#sky .star.supernova .star-ring{animation:supernova-shock .75s ease-out forwards;border-color:var(--color);box-shadow:0 0 16px var(--color),inset 0 0 12px var(--color)}
+#sky .star.supernova .star-flare{animation:supernova-rays .75s ease-out forwards}
+@keyframes supernova-core{0%{transform:scale(1);opacity:1}18%{transform:scale(3.5);background:#fff;box-shadow:0 0 24px white,0 0 55px var(--color);opacity:1}100%{transform:scale(.1);opacity:0}}
+@keyframes supernova-shock{0%{transform:scale(.3);opacity:0}18%{opacity:1}100%{transform:scale(5);opacity:0}}
+@keyframes supernova-rays{0%{transform:scale(.5) rotate(0);opacity:0}15%{opacity:1}100%{transform:scale(4) rotate(35deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){#sky .star.supernova i,#sky .star.supernova .star-ring,#sky .star.supernova .star-flare{animation:none;opacity:0}}

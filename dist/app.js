@@ -25,7 +25,7 @@ function showRecords(){if(playing){toast('도전을 마치면 기록을 볼 수 
 $('learnNav').onclick=setLearn;$('gameNav').onclick=setGame;$('next').onclick=setGame;$('shuffle').onclick=()=>celestialSky.reset();$('recordsBtn').onclick=showRecords;$('closeRecords').onclick=()=>$('records').close();$('reset').onclick=()=>{if(playing){toast('도전을 먼저 종료해 주세요.');return}if(confirm('수집한 별과 1단계 통과 상태를 초기화할까요? 게임 기록은 유지됩니다.')){data.collected=[];save();renderCollection();setLearn()}};renderCollection();setLearn();if(!storageOK)toast('브라우저 저장소를 읽지 못했습니다. 저장 설정을 확인해 주세요.');
 
 
-document.querySelectorAll('[data-pan]').forEach(b=>b.onclick=()=>celestialSky.move(...b.dataset.pan.split(',').map(Number)));
+
 
 function setObservationView(analysis){
  document.querySelector('.workspace').classList.toggle('show-analysis',analysis);

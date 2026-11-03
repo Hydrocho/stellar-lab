@@ -28,6 +28,6 @@ function visibleSpectrum(temperature) {
     <div class="spectrum-ticks"><span>380</span><span>480</span><span>580</span><span>680</span><span>780 nm</span></div>
     <div class="spectrum-readings">${['청색', '녹색', '적색'].map((name, i) => `<div><span><i style="background:${['#6e99ff', '#7ee58c', '#ff7773'][i]}"></i>${name} <small>${[450,550,650][i]} nm</small></span><strong>${values[i]}</strong><div class="reading-track"><b style="width:${values[i]}%;background:${['#6e99ff', '#7ee58c', '#ff7773'][i]}"></b></div></div>`).join('')}</div>
     <p>밝게 보이는 영역일수록 빛의 세기가 강해요.</p>
-    <small class="spectrum-note">이 별의 가시광선 최대 세기 = 100. 별 사이의 전체 밝기 비교가 아닌 파장별 상대 비교예요. 화면 색은 모식 표현이며, 흡수선은 생략했어요.</small>
+    <details class="spectrum-details"><summary>상대 세기 · 모형 안내</summary><small class="spectrum-note">이 별의 가시광선 최대 세기 = 100. 별 사이의 전체 밝기 비교가 아닌 파장별 상대 비교예요. 화면 색은 모식 표현이며, 흡수선은 생략했어요.</small></details>
   </section>`;
 }

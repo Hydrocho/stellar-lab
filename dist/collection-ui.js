@@ -20,7 +20,7 @@ function requestAtlasReset(){
 }
 function confirmAtlasReset(){
  CollectionRules.reset(data);save();renderCollection();setLearn();renderAtlas();$('atlasDetail').innerHTML='';
- $('resetAtlasDialog').close();toast('도감을 초기화했습니다. 게임 기록은 유지됩니다.');
+ $('resetAtlasDialog').close();toast('도감을 초기화했습니다. 1단계 통과 여부와 게임 기록은 유지됩니다.');
 }
 document.addEventListener('DOMContentLoaded',()=>{
  $('atlasBtn').onclick=showAtlas;$('closeAtlas').onclick=()=>$('atlas').close();

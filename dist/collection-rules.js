@@ -10,5 +10,5 @@ var CollectionRules={
   if(this.signal(star,wavelength)<.995)return 'off-peak';
   data.collected.push(star.id);return 'collected';
  },
- reset(data){data.collected=[];data.passed=false;}
+ reset(data){data.passed=data.passed===true||data.collected.length===21;data.collected=[];}
 };

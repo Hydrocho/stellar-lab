@@ -56,3 +56,10 @@
 @keyframes supernova-shock{0%{transform:scale(.3);opacity:0}18%{opacity:1}100%{transform:scale(5);opacity:0}}
 @keyframes supernova-rays{0%{transform:scale(.5) rotate(0);opacity:0}15%{opacity:1}100%{transform:scale(4) rotate(35deg);opacity:0}}
 @media(prefers-reduced-motion:reduce){#sky .star.supernova i,#sky .star.supernova .star-ring,#sky .star.supernova .star-flare{animation:none;opacity:0}}
+/* All stage-two clues are achromatic: students infer color from temperature. */
+#target .temperature-clue{padding:16px 0;text-align:center;color:#f4f6fa}
+#target .temperature-clue small{display:block;color:#b8c0ce;font-size:12px;margin-bottom:12px}
+#target .temperature-clue strong{display:block;font-size:clamp(23px,2vw,32px);font-weight:800;line-height:1.5;font-variant-numeric:tabular-nums;word-break:keep-all}
+#target .temperature-clue p{color:#b8c0ce;font-size:12px;margin:12px 0 0}
+main:has(.hunt-playing)>.collection,main:has(.hunt-playing)>.guide{display:none}
+@media(max-width:700px){#target .temperature-clue{padding:5px 0}#target .temperature-clue small{font-size:10px;margin-bottom:4px}#target .temperature-clue strong{font-size:17px}#target .temperature-clue p{font-size:10px;margin:5px 0 0}}

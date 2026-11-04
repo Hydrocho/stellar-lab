@@ -30,7 +30,8 @@ class HuntSession {
  }
  capture(s,now){this.tick(now);if(!this.available(s,now))return {blocked:true};const m=this.mission;
   const bounds=[[30000,Infinity],[10000,30000],[7500,10000],[6000,7500],[5200,6000],[3700,5200],[2400,3700]];
-  const match=m?(m.kind===5?s.type===m.type:s.temp>=bounds[m.type][0]&&s.temp<bounds[m.type][1]):s.type===this.target;
+  const expected=m?m.type:this.target;
+  const match=s.temp>=bounds[expected][0]&&s.temp<bounds[expected][1];
   if(!match){this.wrong++;this.combo=0;const points=-Math.min(30,this.score);this.score+=points;return {correct:false,points,bonus:0};}
   this.lastSuccess=s.type;this.correct++;this.combo++;this.best=Math.max(this.best,this.combo);this.cooldowns.set(s.id,now+5000);
   const points=100*(this.combo>=5?2:this.combo>=3?1.5:1)*(this.remaining(now)<=10000?2:1);let bonus=0;

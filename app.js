@@ -28,20 +28,20 @@ function observe(s) {
 }
 
 function setLearn() { if (playing) { toast('진행 중인 도전을 마치거나 종료해 주세요.'); return } stopResultAnimation(); setObservationView(false); mode = 'learn'; selected = null; $('learnNav').classList.add('active'); $('gameNav').classList.remove('active'); $('gameBar').hidden = true; $('skyTitle').textContent = '관측 가능한 밤하늘'; $('instrumentTitle').textContent = '스펙트럼 분석기'; $('shuffle').disabled = false; $('subtitle').textContent = '밤하늘의 별을 관측하고, 스펙트럼으로 별의 비밀을 풀어보세요.'; $('observation').innerHTML = '<div class="empty"><div class="empty-orbit">✧</div><h3>어떤 별이 궁금한가요?</h3><p>별을 중앙 십자선에 1초간 맞추면<br>별빛의 스펙트럼을 분석할 수 있어요.</p></div><div class="hint">01 &nbsp; 하늘을 밀어 별을 중앙에 맞추고 1초 유지<br>02 &nbsp; 파장 탐침으로 가장 강한 빛 찾기<br>03 &nbsp; 관측 카드를 모아 21칸의 도감 완성</div>'; renderSky(STARS) }
-function setGame() { if (!unlocked()) { toast('먼저 1단계에서 21개의 별을 모두 수집하세요.'); return } if (playing) return; stopResultAnimation(); setObservationView(true); mode = 'game'; selected = null; $('learnNav').classList.remove('active'); $('gameNav').classList.add('active'); $('gameBar').hidden = true; $('skyTitle').textContent = '별 찾기 도전'; $('instrumentTitle').textContent = '미션 컨트롤'; $('subtitle').textContent = '배운 내용을 떠올리며 60초 동안 목표 유형의 별을 빠르게 찾아보세요.'; $('observation').innerHTML = '<div class="empty"><div class="empty-orbit">⌁</div><h3>이제, 별빛을 읽을 시간</h3><p>하늘을 밀어 목표 유형의 별을 찾으세요.<br>정답 +100점 · 오답 −30점<br>3콤보 ×1.5 · 5콤보 ×2 · 마지막 10초 ×2<br>20초·40초 이후 정답 시 특별 미션 시작<br>10초 안에 성공 시 +200점</p></div><button id="start" class="primary">60초 도전 시작 →</button><div class="hint">완주 점수 기준 · S / A / B / C / D<br>S 3,200 이상 · A 2,400–3,199<br>B 1,600–2,399 · C 800–1,599 · D 800 미만<br>중도 종료는 미완주로 저장되며 등급을 부여하지 않습니다.</div>'; $('start').onclick = startGame; renderSky(STARS) }
+function setGame() { if (!unlocked()) { toast('먼저 1단계에서 21개의 별을 모두 수집하세요.'); return } if (playing) return; stopResultAnimation(); setObservationView(true); mode = 'game'; selected = null; $('learnNav').classList.remove('active'); $('gameNav').classList.add('active'); $('gameBar').hidden = true; $('skyTitle').textContent = '별 찾기 도전'; $('instrumentTitle').textContent = '미션 컨트롤'; $('subtitle').textContent = '배운 내용을 떠올리며 제시된 표면 온도로 별의 색을 떠올리고, 60초 동안 해당하는 별을 찾아보세요.'; $('observation').innerHTML = '<div class="empty"><div class="empty-orbit">⌁</div><h3>이제, 별빛을 읽을 시간</h3><p>표면 온도만 보고 별의 색을 판단해 찾으세요.<br>게임 중에는 색상 참고 카드가 숨겨집니다.<br>정답 +100점 · 오답 −30점<br>3콤보 ×1.5 · 5콤보 ×2 · 마지막 10초 ×2<br>20초·40초 이후 정답 시 특별 미션 시작<br>10초 안에 성공 시 +200점</p></div><button id="start" class="primary">60초 도전 시작 →</button><div class="hint">완주 점수 기준 · S / A / B / C / D<br>S 3,200 이상 · A 2,400–3,199<br>B 1,600–2,399 · C 800–1,599 · D 800 미만<br>중도 종료는 미완주로 저장되며 등급을 부여하지 않습니다.</div>'; $('start').onclick = startGame; renderSky(STARS) }
 function newRound() { renderSky(STARS); updateHunt(); }
 function updateHunt() {
  const now=performance.now();hunt.tick(now);target=hunt.target;
  score=hunt.score;correct=hunt.correct;wrong=hunt.wrong;
  const m=hunt.mission;
- const types=m?[m.type]:[target];
+ const targetType=m?m.type:target;
  const band=i=>i===0?'30,000 K 이상':`${TYPES[i][1].toLocaleString()} K 이상 · ${TYPES[i][2].toLocaleString()} K 미만`;
- const title=m?(m.kind===5?`유형 미션 · ${TYPES[m.types[0]][0]}형 → ${TYPES[m.types[1]][0]}형`:`온도 미션 · ${band(m.type)}`):(hunt.pending.length?'목표 별 찾기 · 성공 후 특별 미션':'목표 별 찾기');
- const signal=title+types.join(',')+(m?.progress||0);
+ const title=m?'온도 탐색 특별 미션':(hunt.pending.length?'온도로 별 찾기 · 성공 후 특별 미션':'온도로 별 찾기');
+ const signal=title+targetType+(m?.progress||0);
  $('missionStatus').textContent=title+(m?' · '+m.progress+'/2 · 남은 '+Math.ceil((m.end-now)/1000)+'초':'');
  if(signal!==goalSignal){
   goalSignal=signal;
-  $('target').innerHTML=types.map(i=>`<div class="hunt-star"><div class="orb" aria-hidden="true" style="--color:${TYPES[i][4]}"></div><div><h3 style="color:${TYPES[i][4]}">${TYPES[i][0]}형 · ${TYPES[i][3]}</h3><div class="target-temperature" style="--color:${TYPES[i][4]}"><small>표면 온도</small><strong>${TYPES[i][5]}</strong></div></div></div>`).join('<span class="hunt-or">또는</span>');
+  $('target').innerHTML=`<div class="temperature-clue"><small>찾아야 할 별의 표면 온도</small><strong>${band(targetType)}</strong><p>이 온도의 별은 어떤 색일까요?</p></div>`;
   $('target').classList.remove('goal-signal');void $('target').offsetWidth;$('target').classList.add('goal-signal');
  }
  const left=hunt.remaining(now), count=left>0&&left<=5000?String(Math.ceil(left/1000)):'';
@@ -59,7 +59,7 @@ function startGame() {
  setObservationView(false);playing=true;hunt=new HuntSession(STARS,performance.now());goalSignal='';score=correct=wrong=0;deadline=hunt.start+60000;
  if(celestialSky.aim){celestialSky.aim.suspend();celestialSky.aim.latched=null;}
  $('gameBar').hidden=false;document.querySelector('.workspace').classList.add('hunt-playing');$('shuffle').disabled=true;
- $('observation').innerHTML='<div class="hunt-instructions">0.4초 조준 · 폭발 후 다른 위치에 생성<br>3콤보 ×1.5 / 5콤보 ×2 / 마지막 10초 ×2</div><div id="gameFeedback" class="feedback" role="status">첫 번째 별을 찾아보세요.</div><button id="stop" class="outline">도전 종료</button>';
+ $('observation').innerHTML='<div class="hunt-instructions">0.4초 조준 · 폭발 후 다른 위치에 생성<br>3콤보 ×1.5 / 5콤보 ×2 / 마지막 10초 ×2</div><div id="gameFeedback" class="feedback" role="status">온도를 읽고 알맞은 색의 별을 찾아보세요.</div><button id="stop" class="outline">도전 종료</button>';
 
  $('stop').onclick=()=>finish(true);newRound();
  clearInterval(ticker);ticker=setInterval(()=>{updateHunt();if(hunt.remaining(performance.now())<=0)finish(false)},80);
@@ -70,7 +70,7 @@ function guess(s) {
  if(result.correct)celestialSky.explodeAndRelocate?.(s.id,now);
  updateHunt();
  const message=result.correct?`+${result.points}${result.bonus?' · 미션 성공 +200':''} · ${hunt.combo} COMBO`:`오답 · ${TYPES[s.type][0]}형 · ${result.points}점 · 콤보 해제`;
- $('gameFeedback').textContent=message;$('huntReward').textContent=message;
+ $('gameFeedback').textContent=`${result.correct?'정답':'오답'} · 방금 선택한 별: ${s.temp.toLocaleString()} K · ${TYPES[s.type][3]}. ${result.correct?'제시된 온도 범위에 해당해요.':'제시된 온도 범위 밖이에요.'} ${message}`;$('huntReward').textContent=message;
  $('huntReward').classList.remove('reward-pop');void $('huntReward').offsetWidth;$('huntReward').classList.add('reward-pop');
 }
 function grade(n) { return n >= 3200 ? 'S' : n >= 2400 ? 'A' : n >= 1600 ? 'B' : n >= 800 ? 'C' : 'D' }

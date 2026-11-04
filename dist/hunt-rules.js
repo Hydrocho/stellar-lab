@@ -36,7 +36,7 @@ class HuntSession {
   this.lastSuccess=s.type;this.correct++;this.combo++;this.best=Math.max(this.best,this.combo);this.cooldowns.set(s.id,now+5000);
   const points=100*(this.combo>=5?2:this.combo>=3?1.5:1)*(this.remaining(now)<=10000?2:1);let bonus=0;
   if(m){m.used.push(s.id);m.progress++;if(m.progress===2){bonus=200;this.completed++;this.mission=null;this.choose(now);}else{m.type=m.types[m.progress];this.target=m.type;}}else if(!this.beginMission(now))this.choose(now);
-  this.events.push({id:s.id,type:s.type,elapsed:Math.round((now-this.start)/1000),points,bonus,combo:this.combo,mission:bonus?m.kind:null,missionType:bonus?m.type:null});
+  this.events.push({id:s.id,type:s.type,elapsed:Math.round((now-this.start)/1000),points,bonus,scoreBefore:this.score,combo:this.combo,mission:bonus?m.kind:null,missionType:bonus?m.type:null});
   this.score+=points+bonus;return {correct:true,points,bonus};
  }
 }

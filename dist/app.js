@@ -28,7 +28,7 @@ function observe(s) {
 }
 
 function setLearn() { if (playing) { toast('진행 중인 도전을 마치거나 종료해 주세요.'); return } stopResultAnimation(); setObservationView(false); mode = 'learn'; selected = null; $('learnNav').classList.add('active'); $('gameNav').classList.remove('active'); $('gameBar').hidden = true; $('skyTitle').textContent = '관측 가능한 밤하늘'; $('instrumentTitle').textContent = '스펙트럼 분석기'; $('shuffle').disabled = false; $('subtitle').textContent = '밤하늘의 별을 관측하고, 스펙트럼으로 별의 비밀을 풀어보세요.'; $('observation').innerHTML = '<div class="empty"><div class="empty-orbit">✧</div><h3>어떤 별이 궁금한가요?</h3><p>별을 중앙 십자선에 1초간 맞추면<br>별빛의 스펙트럼을 분석할 수 있어요.</p></div><div class="hint">01 &nbsp; 하늘을 밀어 별을 중앙에 맞추고 1초 유지<br>02 &nbsp; 파장 탐침으로 가장 강한 빛 찾기<br>03 &nbsp; 관측 카드를 모아 21칸의 도감 완성</div>'; renderSky(STARS) }
-function setGame() { if (!unlocked()) { toast('먼저 1단계에서 21개의 별을 모두 수집하세요.'); return } if (playing) return; stopResultAnimation(); setObservationView(true); mode = 'game'; selected = null; $('learnNav').classList.remove('active'); $('gameNav').classList.add('active'); $('gameBar').hidden = true; $('skyTitle').textContent = '별 찾기 도전'; $('instrumentTitle').textContent = '미션 컨트롤'; $('subtitle').textContent = '배운 내용을 떠올리며 제시된 표면 온도로 별의 색을 떠올리고, 60초 동안 해당하는 별을 찾아보세요.'; $('observation').innerHTML = '<div class="empty"><div class="empty-orbit">⌁</div><h3>이제, 별빛을 읽을 시간</h3><p>표면 온도만 보고 별의 색을 판단해 찾으세요.<br>하단 카드에서 온도에 해당하는 색을 확인하세요.<br>정답 +100점 · 오답 −30점<br>3콤보 ×1.5 · 5콤보 ×2 · 마지막 10초 ×2<br>20초·40초 이후 정답 시 특별 미션 시작<br>10초 안에 성공 시 +200점</p></div><button id="start" class="primary">60초 도전 시작 →</button><div class="hint">완주 점수 기준 · S / A / B / C / D<br>S 4,000 이상 · A 2,400–3,999<br>B 1,600–2,399 · C 800–1,599 · D 800 미만<br>중도 종료는 미완주로 저장되며 등급을 부여하지 않습니다.</div>'; $('start').onclick = startGame; renderSky(STARS) }
+function setGame() { if (!unlocked()) { toast('먼저 1단계에서 21개의 별을 모두 수집하세요.'); return } if (playing) return; stopResultAnimation(); setObservationView(true); mode = 'game'; selected = null; $('learnNav').classList.remove('active'); $('gameNav').classList.add('active'); $('gameBar').hidden = true; $('skyTitle').textContent = '별 찾기 도전'; $('instrumentTitle').textContent = '미션 컨트롤'; $('subtitle').textContent = '배운 내용을 떠올리며 제시된 표면 온도로 별의 색을 떠올리고, 60초 동안 해당하는 별을 찾아보세요.'; $('observation').innerHTML = '<div class="empty"><div class="empty-orbit">⌁</div><h3>이제, 별빛을 읽을 시간</h3><p>표면 온도만 보고 별의 색을 판단해 찾으세요.<br>하단 카드에서 온도에 해당하는 색을 확인하세요.<br>정답 +125점 · 오답 −37~38점<br>3콤보 ×1.5 · 5콤보 ×2 · 마지막 10초 ×2<br>20초·40초 이후 정답 시 특별 미션 시작<br>10초 안에 성공 시 +250점</p></div><button id="start" class="primary">60초 도전 시작 →</button><div class="hint">완주 점수 기준 · S / A / B / C / D<br>S 5,000 이상 · A 3,000–4,999<br>B 2,000–2,999 · C 1,000–1,999 · D 1,000 미만<br>중도 종료는 미완주로 저장되며 등급을 부여하지 않습니다.</div>'; $('start').onclick = startGame; renderSky(STARS) }
 function newRound() { renderSky(STARS); updateHunt(); }
 function updateHunt() {
  const now=performance.now();hunt.tick(now);target=hunt.target;
@@ -48,7 +48,7 @@ function updateHunt() {
  $('huntCountdown').hidden=!count;
  if($('huntCountdown').textContent!==count){$('huntCountdown').textContent=count;$('huntCountdown').classList.remove('count-beat');void $('huntCountdown').offsetWidth;$('huntCountdown').classList.add('count-beat');}
  $('timer').textContent=(left/1000).toFixed(1);
- $('score').textContent=`${score}점`;
+ $('score').textContent=`${ScoreDisplay.format(score)}점`;
  $('combo').textContent=`${hunt.combo} COMBO${hunt.combo>=5?' ×2':hunt.combo>=3?' ×1.5':''}${hunt.remaining(now)<=10000?' · FINAL ×2':''}`;
  $('sky').classList.toggle('final-seconds',playing&&hunt.remaining(now)<=10000);
  $('gameBar').classList.toggle('final-seconds',playing&&hunt.remaining(now)<=10000);
@@ -66,11 +66,13 @@ function startGame() {
 }
 function guess(s) {
  if(!playing)return;const now=performance.now();if(now>=deadline){finish(false);return;}
+ const before=hunt.score;
  const result=hunt.capture(s,now);if(result.blocked)return;
  if(result.correct)celestialSky.explodeAndRelocate?.(s.id,now);
  updateHunt();
- const message=result.correct?`+${result.points}${result.bonus?' · 미션 성공 +200':''} · ${hunt.combo} COMBO`:`오답 · ${TYPES[s.type][0]}형 · ${result.points}점 · 콤보 해제`;
- $('gameFeedback').textContent=`${result.correct?'정답':'오답'} · ${s.temp.toLocaleString()} K · ${TYPES[s.type][3]} · ${result.correct?'+':''}${result.points}점${result.bonus?' · 미션 +200':''}`;$('huntReward').textContent=message;
+ const points=ScoreDisplay.change(before,hunt.score)-ScoreDisplay.total(result.bonus||0);
+ const message=result.correct?`+${points}${result.bonus?' · 미션 성공 +250':''} · ${hunt.combo} COMBO`:`오답 · ${TYPES[s.type][0]}형 · ${points}점 · 콤보 해제`;
+ $('gameFeedback').textContent=`${result.correct?'정답':'오답'} · ${s.temp.toLocaleString()} K · ${TYPES[s.type][3]} · ${result.correct?'+':''}${points}점${result.bonus?' · 미션 +250':''}`;$('huntReward').textContent=message;
  $('huntReward').classList.remove('reward-pop');void $('huntReward').offsetWidth;$('huntReward').classList.add('reward-pop');
 }
 function grade(n) { return n >= 4000 ? 'S' : n >= 2400 ? 'A' : n >= 1600 ? 'B' : n >= 800 ? 'C' : 'D' }
@@ -82,20 +84,20 @@ function finish(aborted) {
  data.records.unshift({date:new Date().toISOString(),score,correct,wrong,grade:g,aborted,rulesVersion:3,bestCombo:hunt?.best||0,missions:hunt?.completed||0,events});data.records=data.records.slice(0,500);save();$('shuffle').disabled=false;
  const summary=TYPES.map((t,i)=>{const n=events.filter(e=>e.type===i).length;return n?`<span style="--color:${t[4]}">${t[0]}형 <b>${n}</b></span>`:'';}).join('');
  const missionNames=['서로 다른 K형 별 2개','M형 → O형 순서 포착','O형 또는 B형 별 2개','10,000 K 이상인 별 2개','3,700 K 미만 → 10,000 K 이상'];
- $('observation').innerHTML=`<div class="hunt-result"><div class="result-content"><div class="result-heading"><div id="resultGrade" class="result-grade" aria-label="${aborted?'미완주':'최종 등급 '+g}">${aborted?'—':'D'}</div><h3>${aborted?'미완주 · 도전을 종료했어요':'관측 임무 완료!'}</h3><div class="result-score"><b id="resultScore">0</b><span> 점</span></div></div><p class="sub result-stats">정답 ${correct} · 오답 ${wrong} · 최고 ${hunt?.best||0}콤보<br>특별 미션 ${hunt?.completed||0}회 성공</p><div class="result-types">${summary||'이번 도전에서 포착한 별이 없어요.'}</div><details class="result-history"><summary>성공한 관측 내역 ${events.length}건 보기</summary><ol>${events.map(e=>`<li><span>${e.elapsed}초 · ${TYPES[e.type][0]}형 · ${STARS.find(s=>s.id===e.id)?.name||'관측성'}</span><b>+${e.points}점</b>${e.bonus?`<small>특별 미션 성공: ${e.missionType!=null?(e.mission===5?'서로 다른 두 유형 순서 포착':TYPES[e.missionType][5]+' 온도 범위 탐색'):missionNames[e.mission]} · +${e.bonus}점</small>`:''}</li>`).join('')}</ol></details><p class="sub result-saved">${storageOK?'오늘의 기록에 저장했어요.':'기록을 저장하지 못했습니다.'}</p></div><button id="again" class="primary">다시 도전하기 →</button></div>`;
+ $('observation').innerHTML=`<div class="hunt-result"><div class="result-content"><div class="result-heading"><div id="resultGrade" class="result-grade" aria-label="${aborted?'미완주':'최종 등급 '+g}">${aborted?'—':'D'}</div><h3>${aborted?'미완주 · 도전을 종료했어요':'관측 임무 완료!'}</h3><div class="result-score"><b id="resultScore">0</b><span> 점</span></div></div><p class="sub result-stats">정답 ${correct} · 오답 ${wrong} · 최고 ${hunt?.best||0}콤보<br>특별 미션 ${hunt?.completed||0}회 성공</p><div class="result-types">${summary||'이번 도전에서 포착한 별이 없어요.'}</div><details class="result-history"><summary>성공한 관측 내역 ${events.length}건 보기</summary><ol>${events.map(e=>`<li><span>${e.elapsed}초 · ${TYPES[e.type][0]}형 · ${STARS.find(s=>s.id===e.id)?.name||'관측성'}</span><b>+${ScoreDisplay.eventPoints(e).toLocaleString()}점</b>${e.bonus?`<small>특별 미션 성공: ${e.missionType!=null?(e.mission===5?'서로 다른 두 유형 순서 포착':TYPES[e.missionType][5]+' 온도 범위 탐색'):missionNames[e.mission]} · +${ScoreDisplay.format(e.bonus)}점</small>`:''}</li>`).join('')}</ol></details><p class="sub result-saved">${storageOK?'오늘의 기록에 저장했어요.':'기록을 저장하지 못했습니다.'}</p></div><button id="again" class="primary">다시 도전하기 →</button></div>`;
  $('again').onclick=startGame;
  const reduced=typeof window!=='undefined'&&window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
  const started=performance.now(), finalScore=score;
  function frame(){
   const progress=reduced?1:Math.min(1,(performance.now()-started)/1800), value=Math.floor(finalScore*(1-Math.pow(1-progress,2)));
-  $('resultScore').textContent=value.toLocaleString();
+  $('resultScore').textContent=ScoreDisplay.format(value);
   const rank=aborted?'—':grade(value);
   if($('resultGrade').textContent!==rank){$('resultGrade').textContent=rank;$('resultGrade').classList.remove('rank-step');void $('resultGrade').offsetWidth;$('resultGrade').classList.add('rank-step');}
   if(progress===1){stopResultAnimation();$('resultGrade').classList.remove('rank-step');if(!aborted)$('resultGrade').classList.add('rank-final');}
  }
  frame();if(!reduced)resultTicker=setInterval(frame,30);
 }
-function showRecords() { if (playing) { toast('도전을 마치면 기록을 볼 수 있어요.'); return } const today = new Date().toLocaleDateString('sv-SE'); const rows = data.records.filter(r => new Date(r.date).toLocaleDateString('sv-SE') === today); $('recordsContent').innerHTML = `<p class="sub">${today} · 이 브라우저의 기록 · 최근 500회 보관 · 이전 규칙 기록은 별도 표시</p>${rows.length ? `<table><thead><tr><th>시간</th><th>등급</th><th>점수</th><th>정답 / 오답</th></tr></thead><tbody>${rows.map(r => `<tr><td>${new Date(r.date).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}</td><td>${r.aborted ? '미완주' : r.rulesVersion===3?grade(r.score):r.rulesVersion===2?(r.score>=3200?'S':r.score>=2400?'A':r.score>=1600?'B':r.score>=800?'C':'D'):'기존 규칙 · '+(r.grade|| (r.score>=1200?'S':r.score>=900?'A':r.score>=600?'B':r.score>=300?'C':'D'))}</td><td>${r.score}</td><td>${r.correct} / ${r.wrong}</td></tr>`).join('')}</tbody></table>` : '<div class="empty"><p>오늘은 아직 도전 기록이 없어요.<br>별 찾기 도전을 완료하면 여기에 저장됩니다.</p></div>'}`; $('records').showModal() }
+function showRecords() { if (playing) { toast('도전을 마치면 기록을 볼 수 있어요.'); return } const today = new Date().toLocaleDateString('sv-SE'); const rows = data.records.filter(r => new Date(r.date).toLocaleDateString('sv-SE') === today); $('recordsContent').innerHTML = `<p class="sub">${today} · 이 브라우저의 기록 · 최근 500회 보관 · 점수는 모두 같은 표시 단위 · 이전 등급은 당시 기준</p>${rows.length ? `<table><thead><tr><th>시간</th><th>등급</th><th>점수</th><th>정답 / 오답</th></tr></thead><tbody>${rows.map(r => `<tr><td>${new Date(r.date).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}</td><td>${r.aborted ? '미완주' : r.rulesVersion===3?grade(r.score):r.rulesVersion===2?'이전 기준 · '+(r.score>=3200?'S':r.score>=2400?'A':r.score>=1600?'B':r.score>=800?'C':'D'):'기존 규칙 · '+(r.grade|| (r.score>=1200?'S':r.score>=900?'A':r.score>=600?'B':r.score>=300?'C':'D'))}</td><td>${ScoreDisplay.format(r.score)}</td><td>${r.correct} / ${r.wrong}</td></tr>`).join('')}</tbody></table>` : '<div class="empty"><p>오늘은 아직 도전 기록이 없어요.<br>별 찾기 도전을 완료하면 여기에 저장됩니다.</p></div>'}`; $('records').showModal() }
 $('learnNav').onclick = setLearn; $('gameNav').onclick = setGame; $('next').onclick = setGame; $('shuffle').onclick = () => celestialSky.reset(); $('recordsBtn').onclick = showRecords; $('closeRecords').onclick = () => $('records').close(); $('reset').onclick = requestAtlasReset; if (unlocked()) { data.passed=true; save(); } renderCollection(); if(unlocked())setGame();else setLearn(); if (!storageOK) toast('브라우저 저장소를 읽지 못했습니다. 저장 설정을 확인해 주세요.');
 
 
